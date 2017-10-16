@@ -56,15 +56,14 @@ const ServerSideRendering = () => md`
   import { ServerStyleSheet } from 'styled-components'
 
   export default class MyDocument extends Document {
-    static getInitialProps ({ renderPage }) {
-      const sheet = new ServerStyleSheet()
-      const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
-      const styleTags = sheet.getStyleElement()
-      return {
-        ...page, 
-        styleTags
-      }
-    }
+    static getInitialProps({ renderPage }) {
+    const sheet = new ServerStyleSheet()
+    const page = renderPage(App => props =>
+      sheet.collectStyles(<App {...props} />)
+    )
+    const styleTags = sheet.getStyleElement()
+    return { ...page, styleTags }
+  }
 
     render() {
       return (
@@ -83,7 +82,7 @@ const ServerSideRendering = () => md`
     }
   }
   \`\`\`
- 
+  Make sure you don't forget to install the \`babel-plugin-styled-components\`.
   Refer to [our example](https://github.com/zeit/next.js/tree/master/examples/with-styled-components) in the Next.js repo fro an up-to-date usage example.
 `
 
